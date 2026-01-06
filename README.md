@@ -67,18 +67,21 @@ https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure
 
 ---
 
-## Item 2 — Dadosfera | Integrar 🟡
+## Item 2 — Dadosfera | Integrar ✅
 
 **Atividades realizadas:**
-- Upload inicial dos arquivos na plataforma Dadosfera
-- Organização básica dos datasets
+- Upload dos arquivos da base AdventureWorks na plataforma Dadosfera
+- Criação do dataset `casetecnico_mariaclara`
+- Disponibilização das tabelas para exploração e análise
 
-⚠️ **Observação:**  
-A integração foi realizada de forma simplificada, sem automação.
+**Estratégia adotada:**
+A integração inicial foi realizada de forma simplificada, priorizando agilidade no setup do case.
+Em um cenário produtivo, essa ingestão poderia ser automatizada via S3 ou conexão com base transacional,
+com aplicação de microtransformações na camada de ingestão.
 
-**Próximos passos (bônus):**
-- Automatizar ingestão via S3 ou base SQL transacional
-- Aplicar microtransformações dentro da plataforma
+📎 **Evidências:**
+- Print do dataset na Dadosfera
+- Print de algumas das tabelas carregadas
 
 📎 **Evidência:**  
 <img width="1477" height="660" alt="image" src="https://github.com/user-attachments/assets/57fc98f4-ca8b-42f9-ae4b-e4469bb7122e" />
