@@ -81,7 +81,20 @@ A integração foi realizada de forma simplificada, sem automação.
 - Aplicar microtransformações dentro da plataforma
 
 📎 **Evidência:**  
-<!-- prints da base carregada na Dadosfera -->
+<img width="1477" height="660" alt="image" src="https://github.com/user-attachments/assets/57fc98f4-ca8b-42f9-ae4b-e4469bb7122e" />
+
+https://app.dadosfera.ai/pt-BR/collect/pipelines/aec2673c-8f97-47e8-ba72-f2dc18e898d8
+
+<<img width="1513" height="706" alt="image" src="https://github.com/user-attachments/assets/e5a0bac3-169a-4fe7-9bc2-5aa7d88ecd4f" />
+
+https://app.dadosfera.ai/pt-BR/catalog/data-assets/3de32759-694d-47f6-8583-5906f511c379
+
+<<img width="1505" height="701" alt="image" src="https://github.com/user-attachments/assets/e91ee844-cfbd-48ea-b5cd-1ecd71d693a7" />
+
+https://app.dadosfera.ai/pt-BR/catalog/data-assets/23c16621-4138-4447-9f62-acbf1473fc17
+
+
+>
 
 ---
 
