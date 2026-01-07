@@ -188,7 +188,7 @@ A tabela fato se conecta às dimensões por meio das chaves, permitindo análise
 
 O diagrama abaixo ilustra a estrutura do modelo dimensional desenvolvido, destacando a tabela fato no centro e suas conexões com as dimensões.
 
-![Modelo Estrela](../images/modelo_estrela.png)
+![Modelo Estrela](images/modelo_estrela.png)
 
 > Figura 1 – Modelo dimensional em estrela aplicado ao dataset AdventureWorks.
 
