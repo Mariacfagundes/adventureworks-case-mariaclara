@@ -52,11 +52,14 @@ dim_prod = dfs["dim_product"]
 dim_cat = dfs["dim_categories"]
 dim_cal = dfs["dim_calendar"]
 
-# listas SEM quebra
+# ======================================================
+# Listas de chaves candidatas
+# ======================================================
 product_keys = ["product", "product_id", "productkey", "product_key", "prod_id", "sku"]
 category_keys = ["category", "category_id", "categorykey", "category_key", "cat_id"]
-date_keys = ["date", "date_id", "datekey", "date_key", "time_id"]
+date_keys = ["date", "date_id", "datekey", "date_key", "time_id", "calendar_date"]
 
+# Detectando chaves automaticamente
 product_key_fact = detect_key(fact, product_keys)
 product_key_dim = detect_key(dim_prod, product_keys)
 
@@ -65,3 +68,8 @@ category_key_dim = detect_key(dim_cat, category_keys)
 
 date_key_fact = detect_key(fact, date_keys)
 date_key_dim = detect_key(dim_cal, date_keys)
+
+st.subheader("🔑 Chaves detectadas")
+st.write("Produto:", product_key_fact, "↔", product_key_dim)
+st.write("Categoria:", category_key_fact, "↔", category_key_dim)
+st.write("Data:", date_key_fact, "↔", date_key_dim)
