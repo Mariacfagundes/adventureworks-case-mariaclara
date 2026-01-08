@@ -6,12 +6,17 @@ import streamlit as st
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+import os
 
-# Carregar dados (ajustando para os nomes reais dos arquivos)
-products = pd.read_csv("../../dim_product.csv")
-categories = pd.read_csv("../../dim_categories.csv")
-sales = pd.read_csv("../../fact_sales.csv")
-calendar = pd.read_csv("../../dim_calendar.csv")
+# Mostrar diretório atual e arquivos disponíveis (debug)
+st.write("Diretório atual:", os.getcwd())
+st.write("Arquivos disponíveis:", os.listdir(os.getcwd()))
+
+# Carregar dados diretamente da raiz do repositório
+products = pd.read_csv("dim_product.csv")
+categories = pd.read_csv("dim_categories.csv")
+sales = pd.read_csv("fact_sales.csv")
+calendar = pd.read_csv("dim_calendar.csv")
 
 # Título do App
 st.title("Exploração de Dados - AdventureWorks")
@@ -20,12 +25,12 @@ st.title("Exploração de Dados - AdventureWorks")
 st.subheader("Produtos disponíveis")
 st.dataframe(products.head())
 
-# Receita média por categoria
+# Preço médio por categoria
 st.subheader("Preço médio por categoria")
 
-# ⚠️ Ajuste de chaves: verifique os nomes das colunas em seus CSVs
-# Exemplo: se em dim_product.csv a coluna é "ProductCategoryKey", use isso
-# Aqui assumo que existe "ProductCategoryKey" em products e "CategoryKey" em categories
+# Ajuste de chaves: verifique os nomes reais das colunas nos CSVs
+# Exemplo: se em dim_product.csv a coluna é "ProductCategoryKey"
+# e em dim_categories.csv é "CategoryKey", ajuste abaixo:
 df_cat = products.merge(
     categories,
     left_on="ProductCategoryKey",   # ajuste conforme o nome real da coluna
