@@ -65,12 +65,8 @@ st.subheader("🔗 Unindo tabelas (Star Schema)")
 # join fact + product
 df = fact.merge(dim_prod, on="product_key", how="left")
 
-# join product + category
-df = df.merge(dim_cat, on="category_key", how="left")
-
 # join calendar
 df = df.merge(dim_cal, left_on="order_date", right_on="date", how="left")
 
 st.success("Join realizado com sucesso!")
-
 st.dataframe(df.head(), use_container_width=True)
