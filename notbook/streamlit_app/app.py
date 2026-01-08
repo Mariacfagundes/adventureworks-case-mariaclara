@@ -4,16 +4,37 @@
 
 import streamlit as st
 import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
+from scipy.spatial.distance import cosine
+from collections import Counter
+import re
 
+# ------------------------------------------------------------
+# Funções auxiliares para similaridade de texto
+# ------------------------------------------------------------
+def text_to_vector(text):
+    words = re.findall(r'\w+', text.lower())
+    return Counter(words)
+
+def cosine_sim(text1, text2):
+    vec1 = text_to_vector(text1)
+    vec2 = text_to_vector(text2)
+    all_words = set(vec1.keys()).union(set(vec2.keys()))
+    v1 = np.array([vec1.get(word, 0) for word in all_words])
+    v2 = np.array([vec2.get(word, 0) for word in all_words])
+    return 1 - cosine(v1, v2)
+
+# ------------------------------------------------------------
 # Carregar dados (arquivos estão na mesma pasta do app.py)
+# ------------------------------------------------------------
 products = pd.read_csv("dim_product.csv")
 categories = pd.read_csv("dim_categories.csv")
 sales = pd.read_csv("fact_sales.csv")
 calendar = pd.read_csv("dim_calendar.csv")
 
-# Título do App
+# ------------------------------------------------------------
+# Interface Streamlit
+# ------------------------------------------------------------
 st.title("Exploração de Dados - AdventureWorks")
 
 # Mostrar tabela de produtos
@@ -36,19 +57,22 @@ df_cat = products.merge(
 df_price_cat = df_cat.groupby("CategoryName")["ProductPrice"].mean().reset_index()
 st.bar_chart(df_price_cat.set_index("CategoryName"))
 
-# Similaridade entre produtos (usando descrição)
+# ------------------------------------------------------------
+# Similaridade entre produtos (usando descrição, sem scikit-learn)
+# ------------------------------------------------------------
 st.subheader("Similaridade entre produtos (descrição)")
 
 # Se não houver coluna "ProductDescription", ajuste para a coluna correta
-tfidf = TfidfVectorizer(stop_words="english")
-tfidf_matrix = tfidf.fit_transform(products["ProductDescription"].fillna(""))
+descriptions = products["ProductDescription"].fillna("").tolist()
 
-cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
+similarities = []
+for i in range(1, len(descriptions)):
+    sim = cosine_sim(descriptions[0], descriptions[i])
+    similarities.append((i, sim))
 
-# Exemplo: mostrar os 5 produtos mais similares ao primeiro
-similarities = list(enumerate(cosine_sim[0]))
-similarities_sorted = sorted(similarities, key=lambda x: x[1], reverse=True)[1:6]
-similar_products = products.iloc[[i[0] for i in similarities_sorted]][["ProductName", "ProductDescription"]]
+# Ordenar pelos mais similares
+similarities_sorted = sorted(similarities, key=lambda x: x[1], reverse=True)[:5]
+similar_products = products.iloc[[i for i, _ in similarities_sorted]][["ProductName", "ProductDescription"]]
 
 st.write("Produtos mais similares ao primeiro item:")
 st.table(similar_products)
