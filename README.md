@@ -264,12 +264,73 @@ Aqui foi desenvolvido um pipeline simples e impactante, dividido em três camada
 
 ---
 
-## Item 9 — Data Apps 🔴
+## Item 9 — Data Apps ✅
 
-**Status:** Não iniciado  
-**Planejado:**  
-- Desenvolvimento de aplicação em Streamlit
-- Exploração interativa da camada analytics
+Este projeto corresponde ao Item 9 da atividade sobre **Data Apps**, utilizando a biblioteca **Streamlit** para explorar os dados de vendas do dataset AdventureWorks.
+
+---
+
+## 🚀 Deploy do Aplicativo
+
+O Data App está publicado no Streamlit Community Cloud e pode ser acessado no link:
+
+🔗 https://mariasilvaddftech012026-psxut5o7wakcay2mhoyygr.streamlit.app/
+
+---
+
+## 📁 Dados Utilizados
+
+Foram utilizados os seguintes arquivos CSV:
+
+- fact_sales.csv
+- dim_product.csv
+- dim_categories.csv
+- dim_calendar.csv
+
+A aplicação faz a leitura e exibe a estrutura de cada tabela.
+
+---
+
+## 🔗 Modelagem / Integração
+
+As tabelas são unidas seguindo um padrão de **Star Schema**, conectando:
+
+- Fato: `fact_sales`
+- Dimensões: `dim_product`, `dim_categories`, `dim_calendar`
+
+---
+
+## 📈 Funcionalidades do Data App
+
+No acesso via browser, o Data App permite:
+
+✔ Visualizar a estrutura das tabelas  
+✔ Unir os dados (join) entre fato e dimensões  
+✔ Exibir métricas gerais:  
+  - Receita total  
+  - Lucro total  
+  - Margem média  
+✔ Filtrar por ano  
+✔ Visualizar gráficos:  
+  - Top produtos por receita  
+  - Receita ao longo do tempo
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+- Python
+- Streamlit
+- Pandas
+- Matplotlib / Plotly
+
+---
+
+## 🎯 Observação sobre o Item 9
+
+O objetivo desta etapa foi demonstrar a criação de um **Data App funcional** e publicado, com capacidade de exploração visual de dados.
+
+---
 
 ---
 
@@ -282,7 +343,7 @@ Aqui foi desenvolvido um pipeline simples e impactante, dividido em três camada
 
 ---
 
-# 🎨 Item Bônus – GenAI + Data Apps
+# 🎨 Item Bônus – GenAI + Data Apps ✅
 
 Este repositório contém a prova de conceito de integração entre **GenAI** e os dados do case AdventureWorks.  
 O objetivo é demonstrar como a **Dadosfera** pode enriquecer aplicações analíticas com geração de conteúdo visual e textual.
