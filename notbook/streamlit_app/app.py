@@ -1,39 +1,41 @@
+# ============================================================
+# ITEM 9 – DATA APP (Exploração com Streamlit)
+# ============================================================
+
 import streamlit as st
 import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-st.title("📊 AdventureWorks Data App")
+# Carregar dados
+products = pd.read_csv("AdventureWorks_Products.csv")
+categories = pd.read_csv("AdventureWorks_Product_Categories.csv")
 
-# Carregar dados da camada analytics
-dim_calendar = pd.read_csv("analytics/dim_calendar.csv")
-dim_product = pd.read_csv("analytics/dim_product.csv")
-dim_categories = pd.read_csv("analytics/dim_categories.csv")
-fact_sales = pd.read_csv("analytics/fact_sales.csv")
+# Título do App
+st.title("Exploração de Dados - AdventureWorks")
 
-# Filtros
-st.sidebar.header("Filtros")
-year_filter = st.sidebar.selectbox("Ano", sorted(dim_calendar["year"].unique()))
-category_filter = st.sidebar.selectbox("Categoria", dim_categories["category_name"].unique())
+# Mostrar tabela de produtos
+st.subheader("Produtos disponíveis")
+st.dataframe(products.head())
 
-# Preparar dados
-df = fact_sales.merge(dim_product, on="product_key", how="left")
-df = df.merge(dim_categories, left_on="product_key", right_on="category_key", how="left")
-df = df.merge(dim_calendar, left_on="order_date", right_on="date", how="left")
+# Receita média por categoria
+st.subheader("Preço médio por categoria")
+df_cat = products.merge(categories, left_on="ProductSubcategoryKey", right_on="ProductCategoryKey", how="left")
+df_price_cat = df_cat.groupby("CategoryName")["ProductPrice"].mean().reset_index()
+st.bar_chart(df_price_cat.set_index("CategoryName"))
 
-# Aplicar filtros
-df = df[(df["year"] == year_filter) & (df["category_name"] == category_filter)]
+# Similaridade entre produtos (usando descrição)
+st.subheader("Similaridade entre produtos (descrição)")
+tfidf = TfidfVectorizer(stop_words="english")
+tfidf_matrix = tfidf.fit_transform(products["ProductDescription"].fillna(""))
 
-# KPIs
-st.subheader("KPIs")
-col1, col2 = st.columns(2)
-col1.metric("Receita Total", f"${df['revenue'].sum():,.2f}")
-col2.metric("Lucro Total", f"${df['profit'].sum():,.2f}")
+cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
-# Receita mensal
-st.subheader("Receita mensal")
-df_month = df.groupby("month")["revenue"].sum().reset_index()
-st.line_chart(df_month.set_index("month"))
+# Exemplo: mostrar os 5 produtos mais similares ao primeiro
+similarities = list(enumerate(cosine_sim[0]))
+similarities_sorted = sorted(similarities, key=lambda x: x[1], reverse=True)[1:6]
+similar_products = products.iloc[[i[0] for i in similarities_sorted]][["ProductName", "ProductDescription"]]
 
-# Top produtos
-st.subheader("Top 10 produtos mais vendidos")
-df_top = df.groupby("product_name")["order_quantity"].sum().reset_index().nlargest(10, "order_quantity")
-st.bar_chart(df_top.set_index("product_name"))
+st.write("Produtos mais similares ao primeiro item:")
+st.table(similar_products)
+
