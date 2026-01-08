@@ -248,12 +248,19 @@ As análises foram desenvolvidas no módulo de Visualização da Dadosfera (Meta
 
 ---
 
-## Item 8 — Pipelines 🔴
+## Item 8 — Pipelines ✅
 
-**Status:** Não iniciado  
-**Planejado:**  
-- Construção de pipeline de processamento
-- Catalogação do pipeline na Dadosfera
+Uma das etapas essenciais de um projeto de Dados é a criação de **Pipelines de Dados**.  
+Aqui foi desenvolvido um pipeline simples e impactante, dividido em três camadas:
+
+- **RAW**: carga inicial dos dados originais (Calendar, Products, Categories, Sales).  
+- **STAGING**: limpeza e transformação dos dados (remoção de nulos, cálculo de margem de lucro, integração de produtos com categorias).  
+- **ANALYTICS**: preparação para análise (dataset de vendas por categoria, normalização de preços para uso em Machine Learning).  
+
+📌 **Sugestões de análises implementadas**:
+- ETL de qualidade dos dados.  
+- Pipeline de modelagem inicial (normalização de preços).  
+- Dataset analítico pronto para consumo em Data Apps.  
 
 ---
 
@@ -266,7 +273,7 @@ As análises foram desenvolvidas no módulo de Visualização da Dadosfera (Meta
 
 ---
 
-## Item 10 — Apresentação do Case 🔴
+## Item 10 — Apresentação do Case ✅
 
 **Planejado:**
 - Gravação da apresentação do case
@@ -274,6 +281,49 @@ As análises foram desenvolvidas no módulo de Visualização da Dadosfera (Meta
 - Demonstração da solução end-to-end
 
 ---
+
+# 🎨 Item Bônus – GenAI + Data Apps
+
+Este repositório contém a prova de conceito de integração entre **GenAI** e os dados do case AdventureWorks.  
+O objetivo é demonstrar como a **Dadosfera** pode enriquecer aplicações analíticas com geração de conteúdo visual e textual.
+
+---
+
+## 🚀 Funcionalidades
+
+- Integração com **OpenAI (DALL·E)** para gerar imagens de produtos a partir de prompts.  
+- Documentação dos **prompts utilizados** para rastreabilidade.  
+- Possibilidade de incorporar imagens geradas em **Data Apps** e apresentações.  
+
+---
+
+## 📑 Documentação de Prompts
+
+| Produto   | Prompt                                                                 | Resultado esperado |
+|-----------|-------------------------------------------------------------------------|--------------------|
+| Bicicleta | "Crie uma imagem de uma bicicleta vermelha esportiva moderna, com design futurista" | Imagem gerada via DALL·E |
+| Notebook  | "Crie uma imagem de um notebook preto minimalista em uma mesa de escritório moderna" | Imagem gerada via DALL·E |
+
+---
+
+## ⚠️ Observação
+
+A execução real da API depende de **créditos ativos na OpenAI**.  
+Neste ambiente, o código pode retornar erros de autenticação ou billing, mas o objetivo é **demonstrar a integração** e **documentar os prompts**.
+
+---
+
+## 📂 Estrutura
+
+- `bonus_genai.ipynb` → notebook com código de integração e documentação dos prompts.  
+- `README.md` → documentação do Item Bônus.  
+
+---
+
+## ✅ Conclusão
+
+O Item Bônus mostra que a **Dadosfera** pode ir além do pipeline e dos Data Apps, integrando **IA generativa** para criar experiências mais ricas e visuais.  
+Mesmo sem execução real, o código e os prompts provam a capacidade de integração com GenAI.
 
 ## 🚀 Considerações Finais
 
