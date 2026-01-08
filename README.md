@@ -207,18 +207,30 @@ O diagrama abaixo ilustra a estrutura do modelo dimensional desenvolvido, destac
 
 ---
 
-## Item 7 — Análise de Dados — Analisar 🟡
+## Item 7 — Análise de Dados — Analisar ✅
 
-**Atividades realizadas:**
-- Análises por categoria de produto
-- Análises temporais de vendas
-- Construção de métricas de negócio (receita, margem, lucro)
+Com os dados já integrados e estruturados na plataforma Dadosfera, foram criadas análises para gerar valor de negócio por meio de visualizações interativas.
 
-📎 **Evidência:**  
-Consultas e visualizações disponíveis no notebook.
+### Dashboard – Análise Comercial AdventureWorks
 
-🎯 **Próximo passo:**
-- Criar dashboards externos (ex: Metabase)
+O dashboard contempla as seguintes análises:
+
+1. **Top 10 Produtos por Quantidade Vendida**  
+   Identificação dos produtos com maior volume de vendas.
+
+2. **Quantidade Vendida por Território**  
+   Análise da distribuição das vendas por região.
+
+3. **Distribuição de Produtos por Categoria**  
+   Visão da participação de cada categoria no portfólio.
+
+4. **Custo Médio vs Preço Médio por Produto**  
+   Comparação entre custo e preço médio, apoiando análises de margem.
+
+5. **Quantidade Média de Itens por Pedido**  
+   Indicador operacional para entendimento do comportamento dos pedidos.
+
+As análises foram desenvolvidas no módulo de Visualização da Dadosfera (Metabase), utilizando os datasets integrados na plataforma.
 
 ---
 
