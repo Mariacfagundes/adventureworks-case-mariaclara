@@ -155,8 +155,11 @@ Para isso, foi utilizada a biblioteca **Great Expectations**, que permite criar 
 ### Resultado
 O relatório de qualidade dos dados foi gerado em formato HTML, permitindo uma visualização clara dos testes aplicados, status das validações e possíveis alertas.
 
-📄 **Relatório de Data Quality:**  
-➡️ [`sales_data_quality_report.html`](./data_quality/sales_data_quality_report.html)
+### 📊 Relatório de Data Quality
+
+O relatório completo de qualidade dos dados foi gerado em HTML e pode ser acessado no link abaixo:
+
+➡️ [Visualizar relatório de Data Quality](data_quality/sales_data_quality_report.html)
 
 Essa etapa garante maior confiabilidade dos dados utilizados nas análises e dashboards desenvolvidos nas etapas seguintes do projeto.
 
