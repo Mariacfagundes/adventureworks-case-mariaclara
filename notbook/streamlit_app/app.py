@@ -70,3 +70,36 @@ df = df.merge(dim_cal, left_on="order_date", right_on="date", how="left")
 
 st.success("Join realizado com sucesso!")
 st.dataframe(df.head(), use_container_width=True)
+
+st.subheader("📈 Métricas Gerais")
+
+total_revenue = df["revenue"].sum()
+total_profit = df["profit"].sum()
+total_margin = df["margin"].mean()
+
+col1, col2, col3 = st.columns(3)
+col1.metric("Receita Total", f"${total_revenue:,.0f}")
+col2.metric("Lucro Total", f"${total_profit:,.0f}")
+col3.metric("Margem Média", f"{total_margin:.2%}")
+
+st.subheader("🎛 Filtros")
+
+years = sorted(df["year"].dropna().unique())
+selected_year = st.selectbox("Selecione o ano", [None] + list(years))
+
+df_filtered = df.copy()
+if selected_year:
+    df_filtered = df_filtered[df_filtered["year"] == selected_year]
+
+st.subheader("🏆 Top Produtos (por receita)")
+
+top_prod = df_filtered.groupby("product_name")["revenue"].sum().sort_values(ascending=False).head(10)
+
+st.bar_chart(top_prod)
+
+st.subheader("📅 Receita por mês")
+
+rev_month = df_filtered.groupby("month")["revenue"].sum()
+
+st.line_chart(rev_month)
+
