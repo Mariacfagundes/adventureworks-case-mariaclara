@@ -1,84 +1,31 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import re
-from collections import Counter
-import pathlib
-import os
 
-# Debug opcional — pode remover depois
-st.write("CWD:", os.getcwd())
-st.write("FILES in current dir:", os.listdir())
-NB = BASE.parent   # pega o diretório notbook/
-st.write("notbook:", NB, os.listdir(str(NB)))
+st.set_page_config(page_title="Meu App", layout="wide")
 
+st.title("Exemplo de App Streamlit com Pandas & NumPy")
 
-# Caminho base do arquivo atual
-BASE = pathlib.Path(__file__).parent
+st.write("""
+Este é um exemplo simples para validar execução local.
+Carregue um CSV e veja os dados tratados.
+""")
 
-# ============================================================
-# Funções auxiliares para similaridade de texto
-# (usando apenas NumPy + Counter, sem sklearn)
-# ============================================================
-def text_to_vector(text):
-    words = re.findall(r'\w+', text.lower())
-    return Counter(words)
+uploaded_file = st.file_uploader("Escolha um arquivo CSV", type=["csv"])
 
-def cosine_sim(text1, text2):
-    vec1 = text_to_vector(text1)
-    vec2 = text_to_vector(text2)
-    all_words = set(vec1.keys()).union(vec2.keys())
-    v1 = np.array([vec1.get(word, 0) for word in all_words])
-    v2 = np.array([vec2.get(word, 0) for word in all_words])
-    dot = np.dot(v1, v2)
-    norm_v1 = np.linalg.norm(v1)
-    norm_v2 = np.linalg.norm(v2)
-    return dot / (norm_v1 * norm_v2) if norm_v1 and norm_v2 else 0.0
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.subheader("📌 Dados originais")
+    st.dataframe(df)
 
-# ============================================================
-# Carregar dados (CSV no diretório acima)
-# ============================================================
-products = pd.read_csv(BASE / "../dim_product.csv")
-categories = pd.read_csv(BASE / "../dim_categories.csv")
-sales = pd.read_csv(BASE / "../fact_sales.csv")
-calendar = pd.read_csv(BASE / "../dim_calendar.csv")
+    st.subheader("📌 Estatísticas Numéricas (NumPy)")
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
 
-# ============================================================
-# Interface Streamlit
-# ============================================================
-st.title("Exploração de Dados - AdventureWorks")
+    if len(numeric_cols) > 0:
+        stats = df[numeric_cols].describe()
+        st.dataframe(stats)
+    else:
+        st.warning("Não há colunas numéricas para análise.")
 
-# Mostrar tabela de produtos
-st.subheader("Produtos disponíveis")
-st.dataframe(products.head())
-
-# Preço médio por categoria
-st.subheader("Preço médio por categoria")
-
-df_cat = products.merge(
-    categories,
-    left_on="ProductCategoryKey",
-    right_on="CategoryKey",
-    how="left"
-)
-
-df_price_cat = df_cat.groupby("CategoryName")["ProductPrice"].mean().reset_index()
-st.bar_chart(df_price_cat.set_index("CategoryName"))
-
-# ============================================================
-# Similaridade entre produtos
-# ============================================================
-st.subheader("Similaridade entre produtos (descrição)")
-
-descriptions = products["ProductDescription"].fillna("").tolist()
-
-similarities = []
-for i in range(1, len(descriptions)):
-    sim = cosine_sim(descriptions[0], descriptions[i])
-    similarities.append((i, sim))
-
-similarities_sorted = sorted(similarities, key=lambda x: x[1], reverse=True)[:5]
-similar_products = products.iloc[[i for i, _ in similarities_sorted]][["ProductName", "ProductDescription"]]
-
-st.write("Produtos mais similares ao primeiro item:")
-st.table(similar_products)
+st.write("---")
+st.write("Feito com ❤️ usando Streamlit + Pandas + NumPy")
