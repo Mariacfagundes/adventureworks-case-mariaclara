@@ -59,9 +59,6 @@ dim_cal = dfs["dim_calendar"]
 # ======================================================
 # Listas de chaves candidatas
 # ======================================================
-product_keys = ["product", "product_id", "productkey", "product_key", "prod_id", "sku"]
-category_keys = ["category", "category_id", "categorykey", "category_key", "cat_id"]
-date_keys = ["date", "date_id", "datekey", "date_key", "time_id", "calendar_date"]
 
 st.subheader("🔗 Unindo tabelas (Star Schema)")
 
