@@ -9,6 +9,8 @@ import os
 # Debug opcional — pode remover depois
 st.write("CWD:", os.getcwd())
 st.write("FILES in current dir:", os.listdir())
+st.write("FILES in notbook:", os.listdir(BASE / ".."))
+
 
 # Caminho base do arquivo atual
 BASE = pathlib.Path(__file__).parent
