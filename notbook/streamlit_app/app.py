@@ -10,6 +10,18 @@ st.title("📊 AdventureWorks - Data App (Item 9)")
 # Carregamento dos arquivos (fixos)
 # ======================================================
 
+import os
+
+BASE = os.path.dirname(__file__)
+
+FILES = {
+    "fact_sales": os.path.join(BASE, "fact_sales.csv"),
+    "dim_product": os.path.join(BASE, "dim_product.csv"),
+    "dim_categories": os.path.join(BASE, "dim_categories.csv"),
+    "dim_calendar": os.path.join(BASE, "dim_calendar.csv")
+}
+
+
 FILES = {
     "fact_sales": "streamlit_app/fact_sales.csv",
     "dim_product": "streamlit_app/dim_product.csv",
