@@ -8,8 +8,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Carregar dados (ajustando para os nomes reais dos arquivos)
-products = pd.read_csv("dim_product.csv")
-categories = pd.read_csv("dim_categories.csv")
+products = pd.read_csv("../../dim_product.csv")
+categories = pd.read_csv("../../dim_categories.csv")
+sales = pd.read_csv("../../fact_sales.csv")
+calendar = pd.read_csv("../../dim_calendar.csv")
 
 # Título do App
 st.title("Exploração de Dados - AdventureWorks")
