@@ -140,16 +140,25 @@ https://app.dadosfera.ai/pt-BR/catalog/data-assets/3de32759-694d-47f6-8583-5906f
 
 ## Item 4 — Data Quality ✅
 
-**Atividades realizadas:**
-- Identificação de valores nulos e inconsistências
-- Tratamento de tipos e padronização de colunas
-- Registro das decisões de qualidade aplicadas
+## Item 4 – Data Quality
 
-📎 **Relatório de Qualidade:**  
-<!-- link markdown ou seção do notebook -->
+Nesta etapa, foi realizada uma análise de qualidade dos dados de vendas do e-commerce com o objetivo de identificar inconsistências, valores ausentes e possíveis problemas que impactariam análises analíticas e modelos de IA.
 
-🎯 **Resposta ao item 4:**  
-Os principais problemas encontrados foram tratados na camada de staging.
+Para isso, foi utilizada a biblioteca **Great Expectations**, que permite criar expectativas sobre os dados e gerar relatórios automatizados de qualidade.
+
+### Abordagem adotada
+- Verificação de valores nulos em campos críticos (datas, chaves e métricas).
+- Validação de tipos de dados.
+- Análise de distribuições e limites esperados.
+- Geração de relatório automatizado em HTML para inspeção visual.
+
+### Resultado
+O relatório de qualidade dos dados foi gerado em formato HTML, permitindo uma visualização clara dos testes aplicados, status das validações e possíveis alertas.
+
+📄 **Relatório de Data Quality:**  
+➡️ [`sales_data_quality_report.html`](./data_quality/sales_data_quality_report.html)
+
+Essa etapa garante maior confiabilidade dos dados utilizados nas análises e dashboards desenvolvidos nas etapas seguintes do projeto.
 
 ---
 
