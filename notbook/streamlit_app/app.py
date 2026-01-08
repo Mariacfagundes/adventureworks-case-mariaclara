@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Carregar dados (agora os arquivos estão na mesma pasta do app.py)
+# Carregar dados (arquivos estão na mesma pasta do app.py)
 products = pd.read_csv("dim_product.csv")
 categories = pd.read_csv("dim_categories.csv")
 sales = pd.read_csv("fact_sales.csv")
