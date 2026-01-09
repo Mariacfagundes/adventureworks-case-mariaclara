@@ -348,7 +348,7 @@ O objetivo desta etapa foi demonstrar a criação de um **Data App funcional** e
 
 **Planejado:**
 - Gravação da apresentação do case
-- Upload no YouTube
+- [Upload no YouTube](https://youtu.be/NnPoaPfjpZU)
 - Demonstração da solução end-to-end
 
 ---
